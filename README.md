@@ -1,22 +1,26 @@
-# DSA Roadmap (Interview + CP ) — 5 Phases
+# Complete DSA Roadmap — Interview + Competitive Programming (Topic-wise, Easy → Hard)
 
-Each topic below is broken down into the exact techniques/variants you need to practice — for both interviews and competitive programming.
+Every topic lists all its important subtopics/variants together in one place. Ordered roughly from easy to hard overall.
 
 ---
 
-## Phase 1: Foundation
+### Arrays & Strings — Basics
+* Static vs dynamic arrays (resizing, amortized O(1) append)
+* In-place manipulation (reverse, rotate, partition)
+* 2D arrays / matrix traversal (row-major, spiral, transpose, in-place rotation)
+* String basics (mutability, StringBuilder/list-join tricks, ASCII/Unicode basics)
 
 ### Two Pointers
-* Opposite direction (sorted array, pair sum)
-* Same direction (fast-slow, in-place partition)
-* Two pointers on two different arrays (merge-style)
-* Two pointers + sorting combo
+* Opposite direction (sorted array pair sum, container with most water)
+* Same direction / fast-slow (remove duplicates, in-place partition)
+* Two pointers across two arrays (merge-style)
+* Two pointers + sorting combo (3Sum, 4Sum)
 
 ### Sliding Window
 * Fixed size window
 * Variable size window
-* At most K (distinct elements / condition)
-* Exactly K (derive from "at most K" − "at most K-1")
+* At most K distinct/condition
+* Exactly K (derive via "at most K" − "at most K−1")
 * Frequency-based window (character/element count matching)
 * Window + HashMap (track counts inside window)
 * Window + Deque (max/min inside window)
@@ -26,146 +30,145 @@ Each topic below is broken down into the exact techniques/variants you need to p
 * 1D prefix sum (range sum query O(1))
 * 2D prefix sum (submatrix sum query)
 * Difference array (O(1) range update)
-* Prefix sum + HashMap (subarray sum equals K pattern)
+* Prefix sum + HashMap (subarray sum equals K)
 * Prefix XOR (subarray XOR queries)
 
 ### Kadane's Algorithm
 * Basic max subarray sum
-* Max subarray with at least one element constraint
+* Max subarray with at-least-one-element constraint
 * Max circular subarray sum
-* Min subarray sum (flip logic)
+* Min subarray sum (flipped logic)
 * 2D Kadane (max sum submatrix)
 
 ### Hashing
 * Frequency counting
-* Complement lookup (Two Sum style)
-* Grouping by key (Group Anagrams style)
-* Hashing with custom key (tuple/string encoding)
-* Rolling hash basics (intro, used later in string matching)
+* Complement lookup (Two Sum pattern)
+* Grouping by key (Group Anagrams pattern)
+* Custom key hashing (tuple/string encoding)
+* Rolling hash basics (bridge to string algorithms)
+* String hashing with double hashing (collision-safe, CP-important)
 
 ### Recursion
-* Identifying base case vs recursive case
-* Recursion tree visualization (draw by hand)
+* Base case vs recursive case
+* Recursion tree visualization
 * Divide and conquer structure (split, solve, combine)
-* Memoization (top-down caching) — bridge to DP
-* Recursion with backtracking state (preview)
+* Memoization (top-down caching)
 
 ### Sorting
 * Merge Sort (stable, O(n log n), O(n) space)
-* Quick Sort (Lomuto vs Hoare partition, pivot selection)
-* Insertion Sort (when useful: small/nearly sorted input)
+* Quick Sort (Lomuto vs Hoare partition, pivot choice)
+* Insertion Sort (small/nearly-sorted input use case)
 * Counting Sort (non-comparison, O(n+k))
-* When to use which sort (stability, space, input size)
+* Radix Sort / Bucket Sort
+* Comparison-sort lower bound (why O(n log n) can't be beaten by comparisons)
 
 ### Binary Search
-* Classic binary search (boundary handling: `left <= right` vs `left < right`)
+* Classic binary search (boundary handling: `left<=right` vs `left<right`)
 * First/last occurrence (lower_bound / upper_bound)
 * Search in rotated sorted array
 * Binary search on 2D matrix
-* Binary search on answer (introduced fully in Phase 2)
+* Binary search on answer (monotonic predicate framing — minimize max / maximize min)
+* Binary search on floating-point answers
+* Ternary search (unimodal functions, CP-specific)
 
 ### Linked List
 * Singly linked list (insert/delete/traverse from scratch)
 * Doubly linked list
-* Reversal — iterative
-* Reversal — recursive
+* Reversal — iterative and recursive
 * Reversal of sub-range / groups of K
 * Fast-slow pointer — find middle
-* Fast-slow pointer — cycle detection (Floyd's)
-* Cycle start point derivation
-* Dummy head node technique (edge case safety)
+* Fast-slow pointer — cycle detection (Floyd's) + cycle start derivation
+* Dummy head node technique
+* Merge K sorted linked lists
 
 ### Math Basics
 * GCD/LCM (Euclidean algorithm)
-* Modular arithmetic ((a+b)%m, (a*b)%m, negative mod handling)
-* Sieve of Eratosthenes (all primes up to n)
-* Fast exponentiation (binary exponentiation, a^b % m)
-
----
-
-## Phase 2: Core Structures
+* Modular arithmetic (handling negative mod, (a+b)%m, (a*b)%m)
+* Sieve of Eratosthenes
+* Fast exponentiation (binary exponentiation)
+* Prime factorization (trial division, smallest prime factor sieve)
 
 ### Stack
-* Array-based implementation
-* Linked-list-based implementation
-* Min Stack (O(1) min retrieval design)
-* Expression evaluation (valid parentheses)
-* Expression evaluation (calculator I/II)
-* Expression evaluation (Reverse Polish Notation)
+* Array-based and linked-list-based implementation
+* Min Stack (O(1) min retrieval)
+* Expression evaluation (valid parentheses, calculator, RPN)
 
 ### Monotonic Stack
-* Next greater element
-* Next smaller element
-* Previous greater/smaller element
+* Next greater / smaller element
+* Previous greater / smaller element
 * Largest rectangle in histogram
 * Stock span / daily temperatures pattern
 
 ### Queue & Deque
 * Array-based circular queue
 * Queue using two stacks (and vice versa)
-* Monotonic deque — sliding window maximum
-* Monotonic deque — sliding window minimum
+* Monotonic deque — sliding window max/min
+
+### Number Theory
+* Modular inverse (via Fermat's little theorem)
+* Extended Euclidean algorithm (ax + by = gcd(a,b))
+* Modular division
+* Euler's totient function
+* Chinese Remainder Theorem
 
 ### Trees — Traversal
-* Preorder (recursive + iterative with stack)
-* Inorder (recursive + iterative with stack)
-* Postorder (recursive + iterative with stack)
-* Level order (BFS with queue)
+* Preorder / Inorder / Postorder (recursive + iterative with explicit stack)
+* Level order (BFS)
 * Zigzag level order
 * Vertical order traversal
 * Boundary traversal
 
 ### Trees — Core Patterns
-* Height/depth of tree
-* Diameter of tree
+* Height/depth, diameter
 * Balanced tree check
 * Path sum (root-to-leaf, any-to-any)
-* Lowest Common Ancestor — binary tree version
-* Lowest Common Ancestor — BST version
-* Validate BST (range-based, not just immediate children)
+* Lowest Common Ancestor — binary tree and BST versions
+* Validate BST (range-based)
 * Kth smallest/largest in BST
 * Construct tree from traversal arrays
 * Serialize/deserialize tree
 * Invert/mirror tree
 
 ### Trie (Prefix Tree)
-* Insert
-* Search (exact word)
-* StartsWith (prefix check)
-* Delete
-* Trie + DFS (word search on grid with multiple words)
+* Insert / Search / StartsWith / Delete
+* Trie + DFS (word search with multiple words on grid)
 * Trie for autocomplete-style problems
 
 ### Heap / Priority Queue
-* Heapify up (insert)
-* Heapify down (extract)
-* Build heap in O(n)
+* Heapify up/down, build heap in O(n)
 * Top-K elements pattern (fixed-size heap)
 * Two-heap pattern (running median)
-* K-way merge pattern (merge K sorted lists/arrays)
+* K-way merge pattern
 * Heap + greedy combo (task scheduling)
 
-### Binary Search — Advanced
-* Binary search on answer (monotonic predicate framing)
-* Minimize the maximum pattern
-* Maximize the minimum pattern
-* Binary search on floating point answers
+### Combinatorics
+* nCr with modulo (factorial + modular inverse)
+* Pascal's triangle
+* Inclusion-exclusion principle
+* Catalan numbers (bracket matching, tree counting problems)
 
-### Number Theory
-* Modular inverse (via Fermat's little theorem)
-* Extended Euclidean algorithm (ax + by = gcd(a,b))
-* Modular division
+### Backtracking
+* General template (choose → recurse → un-choose)
+* Pruning for efficiency
+* Subsets (with/without duplicates)
+* Permutations (with/without duplicates)
+* Combinations, combination sum (with/without reuse)
+* N-Queens, Sudoku solver
+* Word search on grid
+* Palindrome partitioning
 
----
-
-## Phase 3: Graph + Backtracking + Greedy
+### Greedy
+* Greedy-choice property (recognizing when greedy works)
+* Exchange argument (informal correctness proof)
+* Interval scheduling / merge intervals
+* Activity selection
+* Jump game pattern, gas station pattern
+* Huffman coding (greedy + heap combo)
 
 ### Graph — Representation & Traversal
-* Adjacency list
-* Adjacency matrix
-* BFS (shortest path in unweighted graph)
-* DFS — recursive
-* DFS — iterative (explicit stack)
+* Adjacency list vs adjacency matrix
+* BFS (shortest path, unweighted graph)
+* DFS (recursive and iterative)
 * Connected components (undirected graph)
 
 ### Topological Sort
@@ -174,176 +177,127 @@ Each topic below is broken down into the exact techniques/variants you need to p
 * Cycle detection in directed graph (white-gray-black coloring)
 
 ### Union-Find (DSU)
-* Find operation
-* Union operation
-* Path compression
-* Union by rank / union by size
-* Cycle detection in undirected graph
-* Connected components via DSU
+* Find, Union
+* Path compression, union by rank/size
+* Cycle detection (undirected graph)
+* DSU on tree / small-to-large merging (CP-important)
 
 ### Shortest Path
 * Dijkstra's algorithm (min-heap based)
-* Bellman-Ford (handles negative weights, detects negative cycle)
+* Bellman-Ford (negative weights, negative cycle detection)
 * Floyd-Warshall (all-pairs shortest path)
-* 0-1 BFS (deque-based shortcut)
+* 0-1 BFS (deque-based)
 
 ### Minimum Spanning Tree
 * Kruskal's algorithm (edge sort + DSU)
 * Prim's algorithm (heap-based)
 
 ### Advanced Graph Patterns
-* Bipartite check (2-coloring via BFS/DFS)
+* Bipartite check (2-coloring)
 * Multi-source BFS
-* Grid as graph (flood fill, number of islands style)
-* Word ladder style (BFS on implicit graph)
+* Grid as graph (flood fill, islands, word ladder style)
+* Binary Lifting (LCA in O(log n) per query, ancestor jumping)
+* Euler Tour technique (subtree queries via flattening)
 
-### Backtracking
-* General template (choose → recurse → un-choose)
-* Pruning for efficiency
-* Subsets (without duplicates)
-* Subsets (with duplicates — sort + skip logic)
-* Permutations (without duplicates)
-* Permutations (with duplicates)
-* Combinations
-* Combination sum (reuse allowed)
-* Combination sum (no reuse, skip duplicates)
-* N-Queens
-* Sudoku solver
-* Word search on grid (DFS + backtrack + visited marking)
-* Palindrome partitioning
+### Dynamic Programming — Foundations
+* Optimal substructure, overlapping subproblems
+* Top-down (memoization) vs bottom-up (tabulation)
+* Defining DP state precisely, deriving recurrence
+* Space optimization (2D → 1D rolling array)
 
-### Greedy
-* Greedy-choice property (identifying when greedy works)
-* Exchange argument (informal proof technique)
-* Interval scheduling
-* Merge intervals
-* Activity selection
-* Jump game pattern
-* Gas station pattern
-
-### Combinatorics
-* nCr with modulo (factorial + modular inverse)
-* Pascal's triangle
-* Inclusion-exclusion principle
-* Permutation/combination counting basics
-
----
-
-## Phase 4: DP + Range Query Structures (Interview-complete zone)
-
-### DP Foundations
-* Identifying optimal substructure
-* Identifying overlapping subproblems
-* Top-down (memoization)
-* Bottom-up (tabulation)
-* Defining the DP state precisely (write in one sentence before coding)
-* Deriving the recurrence relation
-* Space optimization (2D to 1D rolling array)
-
-### 1D DP
-* Climbing stairs
-* House robber (linear)
-* House robber (circular)
+### Dynamic Programming — 1D
+* Climbing stairs, house robber (linear + circular)
 * Decode ways
-* Longest Increasing Subsequence — O(n²) approach
-* Longest Increasing Subsequence — O(n log n) approach (patience sorting)
+* Longest Increasing Subsequence — O(n²) and O(n log n)
 * Word break
 
-### 2D DP
+### Dynamic Programming — 2D
 * Unique paths / minimum path sum (grid DP)
 * Longest Common Subsequence (LCS)
 * Edit distance (Levenshtein)
-* Longest palindromic subsequence
-* Longest palindromic substring (DP version)
-* Distinct subsequences
-* Interleaving string
+* Longest palindromic subsequence/substring
+* Distinct subsequences, interleaving string
 
-### Knapsack Family
-* 0/1 Knapsack (include vs exclude)
-* 0/1 Knapsack — space optimized
-* Unbounded knapsack (unlimited reuse)
-* Coin change — minimum coins
-* Coin change — count combinations
-* Subset sum
-* Partition equal subset sum
-* Target sum
+### Dynamic Programming — Knapsack Family
+* 0/1 Knapsack (+ space optimized)
+* Unbounded knapsack
+* Coin change (minimum coins, count combinations)
+* Subset sum, partition equal subset sum, target sum
 
-### Interval DP
-* Matrix chain multiplication (teaching example)
+### Dynamic Programming — Interval DP
+* Matrix chain multiplication
 * Burst balloons
-* Palindrome partitioning — minimum cuts
-* General dp[i][j] pattern (build from smaller intervals)
+* Palindrome partitioning (minimum cuts)
+* General dp[i][j] interval-building pattern
 
-### Tree DP
-* Postorder-based tree DP (children first, then combine at parent)
+### Dynamic Programming — Tree DP
+* Postorder-based tree DP
 * Diameter via tree DP
 * House robber on tree
+* Rerooting technique (changing root efficiently)
 
-### Bitmask DP
-* Subset-state DP (n ≤ ~20 signal)
-* Traveling salesman style problems
-* Assignment problems with bitmask state
+### Dynamic Programming — Bitmask & Digit DP
+* Subset-state bitmask DP (n ≤ ~20 signal), TSP-style problems
+* Digit DP (position + tight constraint state)
+* Probability/expectation DP (concept level)
 
-### Digit DP
-* State = position + tight constraint (concept-level understanding)
+### Dynamic Programming — Optimizations (CP-focused)
+* Convex hull trick
+* Divide and conquer optimization
+* Matrix exponentiation (linear recurrence speed-up)
 
 ### Segment Tree
-* Build from array
-* Point update
-* Range query (sum/min/max)
+* Build, point update, range query (sum/min/max)
 * Lazy propagation (range update)
-* Merge sort tree (advanced variant, CP-focused)
+* Merge sort tree (advanced variant)
+* Persistent segment tree (version history)
 
 ### Fenwick Tree (BIT)
 * Point update, range sum query
-* Range update, point query (using difference trick)
-* 2D BIT (matrix range query)
+* Range update, point query (difference trick)
+* 2D BIT
+* BIT for counting inversions
+
+### Sqrt Decomposition & Offline Techniques
+* Sqrt decomposition (block-based range query/update)
+* Mo's Algorithm (offline query reordering)
 
 ### Bit Manipulation
-* AND/OR/XOR/shift basics
-* Check/set/clear/toggle a bit
-* XOR trick (find single non-duplicate number)
+* AND/OR/XOR/shift basics, check/set/clear/toggle a bit
+* XOR trick (single non-duplicate number)
 * Bit counting (Brian Kernighan's algorithm)
 * Bitmasking for subset representation
 * Power of two/three/four checks
+* Bitset optimization (speeding up DP/graph with bitsets, CP-specific)
 
 ### Design Problems
 * LRU Cache (HashMap + Doubly Linked List)
 * LFU Cache (frequency tracking extension)
 * O(1) Insert/Delete/GetRandom (array + hashmap)
+* Ordered Set / Policy-based Data Structure (order statistics — find kth element, count less-than, CP-specific)
 * Design a rate limiter (concept level)
 
 ### String Algorithms
 * KMP (failure function / partial match table)
 * Z-algorithm (Z-array construction)
-* Rabin-Karp (rolling hash for substring search)
-
----
-
-## Phase 5: CP-Advanced
-
-### Advanced Graph
-* Strongly Connected Components — Tarjan's algorithm
-* Strongly Connected Components — Kosaraju's algorithm
-* Bridges (Tarjan's low-link technique)
-* Articulation points
-* Euler path / Euler circuit
-* 2-SAT (boolean satisfiability as graph problem)
-* Max Flow — Ford-Fulkerson
-* Max Flow — Dinic's algorithm
-* Bipartite matching — Hopcroft-Karp
-
-### Advanced String
-* Suffix array construction
-* Aho-Corasick (multi-pattern matching)
+* Rabin-Karp (rolling hash substring search)
 * Manacher's algorithm (O(n) longest palindromic substring)
 
-### Advanced DP
-* Rerooting technique (tree DP with changing root)
-* Convex hull trick (DP optimization)
-* Divide and conquer optimization (for recurrences)
+### Advanced String (CP-focused)
+* Suffix array construction (+ LCP array)
+* Suffix automaton
+* Aho-Corasick (multi-pattern matching)
 
-### Tree Techniques
+### Advanced Graph (CP-focused)
+* Strongly Connected Components — Tarjan's and Kosaraju's
+* Bridges and articulation points (Tarjan's low-link technique)
+* Euler path / Euler circuit
+* 2-SAT (boolean satisfiability as graph problem)
+* Max Flow — Ford-Fulkerson and Dinic's algorithm
+* Bipartite matching — Hopcroft-Karp
+* Min-cost max-flow (advanced, know it exists)
+
+### Tree Techniques (CP-focused)
 * Heavy-Light Decomposition (path queries on tree)
 * Centroid Decomposition (tree divide & conquer)
 
@@ -351,19 +305,20 @@ Each topic below is broken down into the exact techniques/variants you need to p
 * Nim game (XOR-based winner detection)
 * Sprague-Grundy theorem (reducing games to Nim)
 
-### Others
-* Sparse Table (O(1) static range min/max/gcd query)
-* Mo's Algorithm (offline query reordering)
-* Persistent Segment Tree (version history of updates)
-* Meet in the middle (split brute force for large n)
-* Computational geometry basics (convex hull, line intersection, closest pair of points)
+### Computational Geometry
+* Convex hull
+* Line intersection
+* Closest pair of points
+
+### Meet in the Middle
+* Splitting brute force search space into two halves for large n
 
 ---
 
-## Strategy for You (Job-ready in 4–5 months, while continuing CP)
+## How to Use This List (Easy → Hard Overall Order)
 
-1. **Phase 1–3** — Since you already do CP, most of this should feel familiar. Use it as a checklist and fill in any gaps rather than starting from zero.
-2. **Phase 4** — This is your top priority. DP + Segment/Fenwick Tree + Design Problems are what interviews test most heavily.
-3. **Phase 5** — Valuable for CP, optional for interviews. If time is short, skip this and go deeper on Phase 1–4 instead. Just keep the CP topics you're already comfortable with (SCC, Max Flow, etc.) fresh.
+Study roughly in the order the topics appear above — it naturally moves from basic building blocks (arrays, two pointers, sliding window, hashing) through core structures (trees, heaps, graphs), into algorithmic reasoning (DP, backtracking, greedy), and finally into CP-heavy advanced structures (segment tree variants, advanced graph, advanced string, tree techniques, game theory, geometry).
 
-**Weekly habit:** After learning each subtopic, solve 15–20 problems on it. After every problem, write 3 lines: (1) what pattern it was, (2) where your first instinct went wrong, (3) the key insight.
+**Priority note:** everything up through "Dynamic Programming — Knapsack Family" is essential for both interviews and CP — don't skip or rush these. Everything from "Segment Tree" onward leans more CP-specific; still useful for interviews at Google-level occasionally, but if you're short on time, these are the ones to trim first.
+
+**Weekly habit:** after learning each topic, solve 15–20 problems on it. After every problem, write 3 lines: (1) what pattern it was, (2) where your first instinct went wrong, (3) the key insight.
