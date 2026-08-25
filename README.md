@@ -1,243 +1,369 @@
-# DSA Roadmap (Interview + CP Merged) — 5 Phases (Detailed)
+# DSA Roadmap (Interview + CP Merged) — 5 Phases (Detailed, English)
 
-প্রতিটা subtopic এর নিচে ঠিক কী কী শিখতে হবে সেটা point করে দেওয়া আছে।
+Each topic below is broken down into the exact techniques/variants you need to practice — for both interviews and competitive programming.
 
 ---
 
 ## Phase 1: Foundation
 
-### Arrays & Strings
-- Two Pointers — opposite direction (sorted array pair sum) + same direction (in-place partition)
-- Sliding Window
-  - Fixed size window (window size K এর sum/max/min)
-  - Variable size window (expand যখন condition ঠিক থাকে, shrink যখন ভাঙে)
-  - কখন চেনা যাবে: "contiguous subarray/substring" + min/max/count/sum condition
-  - Practice: longest substring without repeat, min window substring, max sum subarray of size K
-- Prefix Sum
-  - prefix[i] = sum(0..i) বানানো, তারপর range sum query O(1) এ বের করা
-  - Difference array (range update O(1) এ করার জন্য)
-- Kadane's Algorithm — max subarray sum, কেন এটা কাজ করে (local max vs global max) সেটা বুঝে নেওয়া
+### Two Pointers
+* Opposite direction (sorted array, pair sum)
+* Same direction (fast-slow, in-place partition)
+* Two pointers on two different arrays (merge-style)
+* Two pointers + sorting combo
+
+### Sliding Window
+* Fixed size window
+* Variable size window
+* At most K (distinct elements / condition)
+* Exactly K (derive from "at most K" − "at most K-1")
+* Frequency-based window (character/element count matching)
+* Window + HashMap (track counts inside window)
+* Window + Deque (max/min inside window)
+* Shrinkable vs non-shrinkable window
+
+### Prefix Sum
+* 1D prefix sum (range sum query O(1))
+* 2D prefix sum (submatrix sum query)
+* Difference array (O(1) range update)
+* Prefix sum + HashMap (subarray sum equals K pattern)
+* Prefix XOR (subarray XOR queries)
+
+### Kadane's Algorithm
+* Basic max subarray sum
+* Max subarray with at least one element constraint
+* Max circular subarray sum
+* Min subarray sum (flip logic)
+* 2D Kadane (max sum submatrix)
 
 ### Hashing
-- HashMap/HashSet internal কাজ করে কিভাবে (hash function, collision, load factor) — বেসিক ধারণা
-- Frequency counting pattern (character/element কতবার এসেছে count করা)
-- Complement lookup pattern (Two Sum এর মতো — বাকিটা কি লাগবে সেটা map এ খোঁজা)
-- Grouping pattern (Group Anagrams এর মতো — sorted string কে key বানিয়ে group করা)
+* Frequency counting
+* Complement lookup (Two Sum style)
+* Grouping by key (Group Anagrams style)
+* Hashing with custom key (tuple/string encoding)
+* Rolling hash basics (intro, used later in string matching)
 
 ### Recursion
-- Base case ও recursive case আলাদা করে চেনা
-- Call stack visualization — হাতে recursion tree এঁকে practice করা
-- Divide & Conquer — split, solve, combine (merge sort/binary search দিয়ে বোঝা)
-- Memoization বেসিক — top-down caching, DP তে যাওয়ার আগে ব্রিজ
+* Identifying base case vs recursive case
+* Recursion tree visualization (draw by hand)
+* Divide and conquer structure (split, solve, combine)
+* Memoization (top-down caching) — bridge to DP
+* Recursion with backtracking state (preview)
 
 ### Sorting
-- Merge Sort — পুরো implementation, stable sort, O(n log n) guaranteed
-- Quick Sort — partition scheme, pivot selection, average O(n log n), worst O(n²) কেন হয়
-- কখন কোনটা ব্যবহার করবে (stability দরকার হলে merge sort, in-place দরকার হলে quick sort)
+* Merge Sort (stable, O(n log n), O(n) space)
+* Quick Sort (Lomuto vs Hoare partition, pivot selection)
+* Insertion Sort (when useful: small/nearly sorted input)
+* Counting Sort (non-comparison, O(n+k))
+* When to use which sort (stability, space, input size)
 
 ### Binary Search
-- Classic binary search — boundary handling (`left <= right` vs `left < right`), off-by-one bug avoid করা
-- Search in Rotated Sorted Array
-- First/last occurrence খোঁজা (lower_bound/upper_bound স্টাইল)
+* Classic binary search (boundary handling: `left <= right` vs `left < right`)
+* First/last occurrence (lower_bound / upper_bound)
+* Search in rotated sorted array
+* Binary search on 2D matrix
+* Binary search on answer (introduced fully in Phase 2)
 
 ### Linked List
-- Singly Linked List — node structure, insert/delete/traverse from scratch লেখা
-- Doubly Linked List — same কিন্তু prev pointer সহ
-- Reversal — iterative ও recursive দুইভাবেই
-- Fast-Slow Pointer (Floyd's) — middle বের করা, cycle detect করা
-- Cycle Detection — cycle আছে কিনা + cycle কোথায় শুরু হয়েছে (math derive করে বোঝা)
-- Dummy head node technique — edge case bug কমানোর জন্য সবসময় ব্যবহার করা
+* Singly linked list (insert/delete/traverse from scratch)
+* Doubly linked list
+* Reversal — iterative
+* Reversal — recursive
+* Reversal of sub-range / groups of K
+* Fast-slow pointer — find middle
+* Fast-slow pointer — cycle detection (Floyd's)
+* Cycle start point derivation
+* Dummy head node technique (edge case safety)
 
 ### Math Basics
-- GCD/LCM — Euclidean algorithm
-- Modular Arithmetic — mod এর properties, (a+b)%m, (a*b)%m
-- Sieve of Eratosthenes — O(n log log n) এ সব prime বের করা
+* GCD/LCM (Euclidean algorithm)
+* Modular arithmetic ((a+b)%m, (a*b)%m, negative mod handling)
+* Sieve of Eratosthenes (all primes up to n)
+* Fast exponentiation (binary exponentiation, a^b % m)
 
 ---
 
 ## Phase 2: Core Structures
 
-### Stack & Queue
-- Array-based ও linked-list-based দুইভাবেই implement করা
-- Monotonic Stack — next greater/smaller element pattern, কেন O(n) হয় সেটা derive করা
-- Monotonic Deque — sliding window maximum/minimum
-- Min Stack — O(1) এ min বের করার design
-- Expression Evaluation — valid parentheses, calculator, RPN evaluation
+### Stack
+* Array-based implementation
+* Linked-list-based implementation
+* Min Stack (O(1) min retrieval design)
+* Expression evaluation (valid parentheses)
+* Expression evaluation (calculator I/II)
+* Expression evaluation (Reverse Polish Notation)
 
-### Trees
-- Traversal
-  - Preorder, Inorder, Postorder — recursive AND iterative (explicit stack দিয়ে) দুইভাবেই
-  - Level order (BFS with queue)
-- BST Operations — search/insert/delete
-- Validate BST — শুধু immediate child না, পুরো valid range check করা
-- LCA (Lowest Common Ancestor) — binary tree ও BST দুই ভার্সনেই
-- Diameter — longest path বের করার recursive approach
-- Balanced Check — height difference বের করে balanced কিনা verify করা
-- Serialization/Deserialization — tree কে string এ convert ও ফেরত আনা
+### Monotonic Stack
+* Next greater element
+* Next smaller element
+* Previous greater/smaller element
+* Largest rectangle in histogram
+* Stock span / daily temperatures pattern
+
+### Queue & Deque
+* Array-based circular queue
+* Queue using two stacks (and vice versa)
+* Monotonic deque — sliding window maximum
+* Monotonic deque — sliding window minimum
+
+### Trees — Traversal
+* Preorder (recursive + iterative with stack)
+* Inorder (recursive + iterative with stack)
+* Postorder (recursive + iterative with stack)
+* Level order (BFS with queue)
+* Zigzag level order
+* Vertical order traversal
+* Boundary traversal
+
+### Trees — Core Patterns
+* Height/depth of tree
+* Diameter of tree
+* Balanced tree check
+* Path sum (root-to-leaf, any-to-any)
+* Lowest Common Ancestor — binary tree version
+* Lowest Common Ancestor — BST version
+* Validate BST (range-based, not just immediate children)
+* Kth smallest/largest in BST
+* Construct tree from traversal arrays
+* Serialize/deserialize tree
+* Invert/mirror tree
 
 ### Trie (Prefix Tree)
-- Insert, Search, StartsWith তিনটা operation implement করা
-- কখন চেনা যাবে: prefix matching, autocomplete, multiple word search
+* Insert
+* Search (exact word)
+* StartsWith (prefix check)
+* Delete
+* Trie + DFS (word search on grid with multiple words)
+* Trie for autocomplete-style problems
 
 ### Heap / Priority Queue
-- Heapify Up/Down — scratch থেকে min-heap/max-heap বানানো
-- Build Heap O(n) — কেন O(n log n) না সেটা বোঝা
-- Top-K Pattern — size K এর heap maintain করা (kth largest, top K frequent)
-- Two-Heap Pattern — median of data stream (max-heap নিচের অর্ধেকের জন্য, min-heap উপরের অর্ধেকের জন্য)
-- K-way Merge — heap দিয়ে K টা sorted list merge করা
+* Heapify up (insert)
+* Heapify down (extract)
+* Build heap in O(n)
+* Top-K elements pattern (fixed-size heap)
+* Two-heap pattern (running median)
+* K-way merge pattern (merge K sorted lists/arrays)
+* Heap + greedy combo (task scheduling)
 
-### Binary Search (Advanced)
-- Binary Search on Answer — "minimize the maximum" / "maximize the minimum" টাইপ problem চেনা
-- Practice: Koko Eating Bananas, Split Array Largest Sum ধরনের problem
+### Binary Search — Advanced
+* Binary search on answer (monotonic predicate framing)
+* Minimize the maximum pattern
+* Maximize the minimum pattern
+* Binary search on floating point answers
 
 ### Number Theory
-- Modular Inverse — division mod এর নিচে করার জন্য
-- Fermat's Little Theorem — modular inverse বের করার একটা উপায়
-- Extended Euclidean Algorithm — gcd(a,b) = ax + by এর x,y বের করা
+* Modular inverse (via Fermat's little theorem)
+* Extended Euclidean algorithm (ax + by = gcd(a,b))
+* Modular division
 
 ---
 
 ## Phase 3: Graph + Backtracking + Greedy
 
-### Graph — Basics
-- Representation — adjacency list vs adjacency matrix (কখন কোনটা ব্যবহার করবে)
-- BFS — shortest path in unweighted graph, level-by-level processing
-- DFS — recursive ও iterative (explicit stack) দুইভাবেই
-- Connected Components (undirected graph এ)
+### Graph — Representation & Traversal
+* Adjacency list
+* Adjacency matrix
+* BFS (shortest path in unweighted graph)
+* DFS — recursive
+* DFS — iterative (explicit stack)
+* Connected components (undirected graph)
 
 ### Topological Sort
-- DFS-based — postorder এ push করে শেষে reverse করা, কেন কাজ করে সেটা বোঝা
-- Kahn's Algorithm — BFS-based, in-degree track করে
-- Cycle Detection (directed graph) — DFS + recursion stack track করা (white-gray-black coloring)
+* DFS-based (postorder + reverse)
+* Kahn's algorithm (BFS + in-degree)
+* Cycle detection in directed graph (white-gray-black coloring)
 
 ### Union-Find (DSU)
-- Find + Union scratch থেকে implement করা
-- Path Compression + Union by Rank/Size — optimization
-- ব্যবহার: connected components, cycle detection (undirected), Kruskal's MST
+* Find operation
+* Union operation
+* Path compression
+* Union by rank / union by size
+* Cycle detection in undirected graph
+* Connected components via DSU
 
 ### Shortest Path
-- Dijkstra — min-heap দিয়ে implement, কেন negative weight এ fail করে
-- Bellman-Ford — negative weight handle করে, negative cycle detect করে, O(VE)
-- Floyd-Warshall — all-pairs shortest path, O(V³), DP formulation হিসেবে বোঝা
+* Dijkstra's algorithm (min-heap based)
+* Bellman-Ford (handles negative weights, detects negative cycle)
+* Floyd-Warshall (all-pairs shortest path)
+* 0-1 BFS (deque-based shortcut)
 
 ### Minimum Spanning Tree
-- Kruskal's — edge sort + union-find
-- Prim's — heap দিয়ে tree grow করা
+* Kruskal's algorithm (edge sort + DSU)
+* Prim's algorithm (heap-based)
 
 ### Advanced Graph Patterns
-- Bipartite Check — 2-coloring BFS/DFS দিয়ে
-- Multi-source BFS — একসাথে একাধিক জায়গা থেকে BFS শুরু করা (Rotting Oranges টাইপ)
-- Grid as Graph — 2D grid কে graph হিসেবে দেখতে শেখা (Number of Islands টাইপ)
+* Bipartite check (2-coloring via BFS/DFS)
+* Multi-source BFS
+* Grid as graph (flood fill, number of islands style)
+* Word ladder style (BFS on implicit graph)
 
 ### Backtracking
-- General Template — choice করা → recurse → un-choose করা (undo)
-- Pruning — কেন এটা exponential blowup কমায়
-- Subsets/Combinations/Permutations — duplicate handle করা (sort + skip logic)
-- N-Queens, Sudoku Solver — constraint satisfaction পদ্ধতি
-- Combination Sum — element reuse করা যাবে vs না যাবে দুই ভ্যারিয়েন্ট
-- Word Search — grid এ DFS + backtrack, visited mark/unmark
+* General template (choose → recurse → un-choose)
+* Pruning for efficiency
+* Subsets (without duplicates)
+* Subsets (with duplicates — sort + skip logic)
+* Permutations (without duplicates)
+* Permutations (with duplicates)
+* Combinations
+* Combination sum (reuse allowed)
+* Combination sum (no reuse, skip duplicates)
+* N-Queens
+* Sudoku solver
+* Word search on grid (DFS + backtrack + visited marking)
+* Palindrome partitioning
 
 ### Greedy
-- Greedy-choice Property বোঝা — কখন greedy কাজ করে, কখন করে না (DP এর সাথে পার্থক্য)
-- Exchange Argument — নিজের greedy choice কেন সঠিক সেটা যুক্তি দিয়ে প্রমাণ করার অভ্যাস
-- Interval Scheduling / Merge Intervals — বড় sub-pattern
-- Activity Selection — classic greedy example
+* Greedy-choice property (identifying when greedy works)
+* Exchange argument (informal proof technique)
+* Interval scheduling
+* Merge intervals
+* Activity selection
+* Jump game pattern
+* Gas station pattern
 
 ### Combinatorics
-- nCr with mod — factorial + modular inverse দিয়ে বের করা
-- Pascal's Triangle — nCr বের করার আরেক উপায়
-- Inclusion-Exclusion Principle — overlapping set count করার জন্য
+* nCr with modulo (factorial + modular inverse)
+* Pascal's triangle
+* Inclusion-exclusion principle
+* Permutation/combination counting basics
 
 ---
 
 ## Phase 4: DP + Range Query Structures (Interview-complete zone)
 
-### Dynamic Programming
-- DP Foundation
-  - Optimal substructure + overlapping subproblems চিনতে শেখা
-  - Top-down (memoization) vs Bottom-up (tabulation) — দুইভাবেই লেখার অভ্যাস
-  - State define করা — dp[i] এর মানে কী সেটা এক লাইনে লিখে তারপর কোড করা
-  - Recurrence বের করা — current state ছোট কোন subproblem এর উপর নির্ভর করছে
-- 1D DP — Climbing Stairs, House Robber, LIS (O(n²) ও O(n log n) দুইভাবে), Word Break
-- 2D DP — Unique Paths, LCS, Edit Distance, Longest Palindromic Subsequence
-- Knapsack Family
-  - 0/1 Knapsack — include vs exclude প্রতিটা item এর জন্য
-  - Unbounded Knapsack — Coin Change (unlimited reuse)
-  - Subset Sum / Partition Equal Subset Sum
-- Interval DP — dp[i][j] = i থেকে j পর্যন্ত best answer, ছোট interval দিয়ে বড়টা বানানো (Matrix Chain Multiplication, Burst Balloons)
-- Tree DP — postorder এ child দের DP value আগে বের করে parent এ combine করা
-- Bitmask DP — n ছোট (≤20) এবং subset জড়িত থাকলে চেনা (TSP টাইপ)
-- Digit DP — position + tight constraint কে state ধরে করা (concept level জানা যথেষ্ট)
+### DP Foundations
+* Identifying optimal substructure
+* Identifying overlapping subproblems
+* Top-down (memoization)
+* Bottom-up (tabulation)
+* Defining the DP state precisely (write in one sentence before coding)
+* Deriving the recurrence relation
+* Space optimization (2D to 1D rolling array)
+
+### 1D DP
+* Climbing stairs
+* House robber (linear)
+* House robber (circular)
+* Decode ways
+* Longest Increasing Subsequence — O(n²) approach
+* Longest Increasing Subsequence — O(n log n) approach (patience sorting)
+* Word break
+
+### 2D DP
+* Unique paths / minimum path sum (grid DP)
+* Longest Common Subsequence (LCS)
+* Edit distance (Levenshtein)
+* Longest palindromic subsequence
+* Longest palindromic substring (DP version)
+* Distinct subsequences
+* Interleaving string
+
+### Knapsack Family
+* 0/1 Knapsack (include vs exclude)
+* 0/1 Knapsack — space optimized
+* Unbounded knapsack (unlimited reuse)
+* Coin change — minimum coins
+* Coin change — count combinations
+* Subset sum
+* Partition equal subset sum
+* Target sum
+
+### Interval DP
+* Matrix chain multiplication (teaching example)
+* Burst balloons
+* Palindrome partitioning — minimum cuts
+* General dp[i][j] pattern (build from smaller intervals)
+
+### Tree DP
+* Postorder-based tree DP (children first, then combine at parent)
+* Diameter via tree DP
+* House robber on tree
+
+### Bitmask DP
+* Subset-state DP (n ≤ ~20 signal)
+* Traveling salesman style problems
+* Assignment problems with bitmask state
+
+### Digit DP
+* State = position + tight constraint (concept-level understanding)
 
 ### Segment Tree
-- Build — array থেকে tree বানানো
-- Point Update / Range Query — update ও query দুইটাই implement করা
-- Lazy Propagation — range update efficient করার জন্য
+* Build from array
+* Point update
+* Range query (sum/min/max)
+* Lazy propagation (range update)
+* Merge sort tree (advanced variant, CP-focused)
 
 ### Fenwick Tree (BIT)
-- Point Update, Range Sum Query — segment tree এর simpler বিকল্প
-- 2D BIT — matrix range query এর জন্য
+* Point update, range sum query
+* Range update, point query (using difference trick)
+* 2D BIT (matrix range query)
 
 ### Bit Manipulation
-- AND/OR/XOR/Shift বেসিক অপারেশন
-- Bit check/set/clear/toggle trick
-- XOR Trick — duplicate ছাড়া single number বের করা
-- Bit Counting — Brian Kernighan's algorithm
-- Bitmasking — subset represent করার জন্য (backtracking ও bitmask DP এর সাথে যুক্ত)
+* AND/OR/XOR/shift basics
+* Check/set/clear/toggle a bit
+* XOR trick (find single non-duplicate number)
+* Bit counting (Brian Kernighan's algorithm)
+* Bitmasking for subset representation
+* Power of two/three/four checks
 
 ### Design Problems
-- LRU Cache — hashmap + doubly linked list দিয়ে scratch থেকে বানানো
-- LFU Cache — frequency track করে extension
-- O(1) Insert/Delete/GetRandom — array + hashmap combine করে design
+* LRU Cache (HashMap + Doubly Linked List)
+* LFU Cache (frequency tracking extension)
+* O(1) Insert/Delete/GetRandom (array + hashmap)
+* Design a rate limiter (concept level)
 
 ### String Algorithms
-- KMP — failure function/partial match table, O(n+m) pattern matching
-- Z-algorithm — pattern matching এর আরেকটা O(n) উপায়
-- Rabin-Karp — rolling hash দিয়ে substring search
+* KMP (failure function / partial match table)
+* Z-algorithm (Z-array construction)
+* Rabin-Karp (rolling hash for substring search)
 
 ---
 
-## Phase 5: CP-Advanced (গভীর প্রতিযোগিতামূলক টপিক)
+## Phase 5: CP-Advanced
 
 ### Advanced Graph
-- SCC — Tarjan's ও Kosaraju's algorithm (strongly connected component বের করা)
-- Bridges & Articulation Points — Tarjan's low-link technique
-- Euler Path/Circuit — graph এ সব edge ঠিক একবার visit করা path
-- 2-SAT — boolean satisfiability কে graph problem এ convert করা
-- Max Flow — Ford-Fulkerson ও Dinic's algorithm
-- Bipartite Matching — Hopcroft-Karp algorithm
+* Strongly Connected Components — Tarjan's algorithm
+* Strongly Connected Components — Kosaraju's algorithm
+* Bridges (Tarjan's low-link technique)
+* Articulation points
+* Euler path / Euler circuit
+* 2-SAT (boolean satisfiability as graph problem)
+* Max Flow — Ford-Fulkerson
+* Max Flow — Dinic's algorithm
+* Bipartite matching — Hopcroft-Karp
 
 ### Advanced String
-- Suffix Array — সব suffix কে sorted order এ রাখা, string query fast করার জন্য
-- Aho-Corasick — একসাথে multiple pattern match করা (trie + KMP combine)
-- Manacher's Algorithm — O(n) এ longest palindromic substring
+* Suffix array construction
+* Aho-Corasick (multi-pattern matching)
+* Manacher's algorithm (O(n) longest palindromic substring)
 
 ### Advanced DP
-- Rerooting Technique — tree DP যেখানে root পরিবর্তন করে answer বের করতে হয়
-- Convex Hull Trick — DP optimization, linear function গুলোর মধ্যে min/max fast বের করা
-- Divide & Conquer Optimization — DP এর recurrence কে D&C দিয়ে fast করা
+* Rerooting technique (tree DP with changing root)
+* Convex hull trick (DP optimization)
+* Divide and conquer optimization (for recurrences)
 
 ### Tree Techniques
-- Heavy-Light Decomposition — tree কে chain এ ভেঙে path query fast করা
-- Centroid Decomposition — tree কে বারবার centroid দিয়ে ভেঙে D&C করা
+* Heavy-Light Decomposition (path queries on tree)
+* Centroid Decomposition (tree divide & conquer)
 
 ### Game Theory
-- Nim Game — XOR দিয়ে winner বের করা
-- Sprague-Grundy Theorem — general game কে Nim এ convert করা
+* Nim game (XOR-based winner detection)
+* Sprague-Grundy theorem (reducing games to Nim)
 
 ### Others
-- Sparse Table — static array এ O(1) range min/max/gcd query
-- Mo's Algorithm — offline query কে reorder করে fast করা
-- Persistent Segment Tree — প্রতিটা update এর আগের version রাখা
-- Meet in the Middle — বড় n কে দুই ভাগে split করে brute force optimize করা
-- Computational Geometry Basics — convex hull, line intersection, closest pair of points
+* Sparse Table (O(1) static range min/max/gcd query)
+* Mo's Algorithm (offline query reordering)
+* Persistent Segment Tree (version history of updates)
+* Meet in the middle (split brute force for large n)
+* Computational geometry basics (convex hull, line intersection, closest pair of points)
 
 ---
 
-## তোমার জন্য Strategy (৪-৫ মাসে Job Ready হওয়ার জন্য)
+## Strategy for You (Job-ready in 4–5 months, while continuing CP)
 
-1. **Phase 1–3** — তুমি CP করছো বলে এগুলোর বেশিরভাগ already কভার। শুধু gap গুলো check করে fill করো (checklist হিসেবে ব্যবহার করো)।
-2. **Phase 4** — এটাই সবচেয়ে বেশি priority দাও। DP + Segment/Fenwick Tree + Design Problems — এগুলোই interview এ সবচেয়ে বেশি লাগবে।
-3. **Phase 5** — CP এর জন্য valuable, কিন্তু interview এর জন্য optional। সময় কম থাকলে স্কিপ করে Phase 1-4 এ depth বাড়াও। শুধু যেগুলো তোমার CP তে ইতিমধ্যে familiar (যেমন SCC, Max Flow) সেগুলো ঝালাই করে রাখো।
+1. **Phase 1–3** — Since you already do CP, most of this should feel familiar. Use it as a checklist and fill in any gaps rather than starting from zero.
+2. **Phase 4** — This is your top priority. DP + Segment/Fenwick Tree + Design Problems are what interviews test most heavily.
+3. **Phase 5** — Valuable for CP, optional for interviews. If time is short, skip this and go deeper on Phase 1–4 instead. Just keep the CP topics you're already comfortable with (SCC, Max Flow, etc.) fresh.
 
-**সাপ্তাহিক অভ্যাস:** প্রতিটা subtopic শেখার পর ১৫-২০টা problem solve করো, এবং প্রতিটা problem এর পর ৩ লাইনে লিখে রাখো — (১) pattern কী ছিল, (২) প্রথম instinct কোথায় ভুল হয়েছিল, (৩) key insight কী।
+**Weekly habit:** After learning each subtopic, solve 15–20 problems on it. After every problem, write 3 lines: (1) what pattern it was, (2) where your first instinct went wrong, (3) the key insight.
