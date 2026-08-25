@@ -1,4 +1,4 @@
-# DSA Roadmap (Interview + CP Merged) — 5 Phases (Detailed, English)
+# DSA Roadmap (Interview + CP ) — 5 Phases
 
 Each topic below is broken down into the exact techniques/variants you need to practice — for both interviews and competitive programming.
 
